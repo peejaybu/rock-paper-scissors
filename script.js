@@ -74,5 +74,3 @@ function game() {
     }  
   }
 }
-
-game();
