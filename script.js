@@ -1,21 +1,20 @@
+let pick = ["rock", "paper", "scissors"];
+
 function computerPlay() {
-  let pick = Math.floor(Math.random() * 3);
-  if (pick == 0) {
-    return "rock";
-  } else if (pick == 1) {
-    return "paper";
-  } else {
-    return "scissors";
-  }
-}
+  let i = Math.floor(Math.random() * 3);
+  return pick[i];
+};
 
 let playerScore = 0;
 let computerScore = 0;
 let ties = 0;
 
-function game() {
-  let round = parseInt(prompt("How many rounds would you like to play?", "5"));
-  while (playerScore + computerScore + ties < round) {
+let buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    let playerSelection = button.id;
+    let computerSelection = computerPlay();
+    
     function playRound(playerSelection, computerSelection) {
       if (playerSelection == "rock" && computerSelection == "paper") {
         return "You Lose! Paper beats Rock";
@@ -34,11 +33,9 @@ function game() {
       }
     }
 
-    let computerSelection = computerPlay();
-    let playerSelection = prompt("What is your hand?", "Rock, Paper, or Scissors").toLowerCase();
-
-    console.log(`You: ${playerSelection} vs Computer: ${computerSelection}`);
-    console.log(playRound(playerSelection, computerSelection));
+    let roundPicks = playRound(playerSelection, computerSelection);
+    document.getElementById("picks").innerHTML = `${roundPicks}`;
+    document.getElementById("round").innerHTML = `You: ${playerSelection} vs Computer: ${computerSelection}`;
 
     switch (playRound(playerSelection, computerSelection)) {
       case "You Lose! Paper beats Rock":
@@ -57,20 +54,25 @@ function game() {
         playerScore++;
     }
 
-    console.log(`You: ${playerScore} Computer: ${computerScore}`);
+    document.getElementById("scores").innerHTML = `You: ${playerScore} Computer: ${computerScore}`;
     
-    if (playerScore + computerScore + ties == round) {
+    if (playerScore == 5 || computerScore == 5) {
       if (playerScore > computerScore) {
-        console.log("Result: You Win!");
-        alert("Result:\nYou Win!");
+        if(!alert("Result: You Win!")){window.location.reload();}
       } else if (playerScore < computerScore) {
-        console.log("Result: You Lose!");
-        alert("Result:\nYou Lose!");
+        if(!alert("Result: You Lose!")){window.location.reload();}
       } else {
-        console.log("Result: It's a Draw!");
-        alert("Result:\nIt's a Draw!");
-
-      }
+        if(!alert("Result: It's a Draw!")){window.location.reload();}
+      }z
     }  
-  }
-}
+
+  });
+});
+
+
+
+
+
+
+
+
