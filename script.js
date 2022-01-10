@@ -54,16 +54,16 @@ buttons.forEach((button) => {
         playerScore++;
     }
 
-    document.getElementById("scores").innerHTML = `You: ${playerScore} Computer: ${computerScore}`;
+    document.getElementById("scores").innerHTML = `You: ${playerScore} Computer: ${computerScore} Draw: ${ties}`;
     
     if (playerScore == 5 || computerScore == 5) {
       if (playerScore > computerScore) {
-        if(!alert("Result: You Win!")){window.location.reload();}
+        if(!alert("You Win! Try Again?")){window.location.reload();}
       } else if (playerScore < computerScore) {
-        if(!alert("Result: You Lose!")){window.location.reload();}
+        if(!alert("You Lose! Try Again?")){window.location.reload();}
       } else {
-        if(!alert("Result: It's a Draw!")){window.location.reload();}
-      }z
+        if(!alert("It's a Draw! Try Again?")){window.location.reload();}
+      }
     }  
 
   });
